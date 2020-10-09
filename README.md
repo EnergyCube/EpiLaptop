@@ -15,7 +15,7 @@ Create a new issue and communicate all informations that you can.
 -------
 
 ### Step 1 (Download and Permission)
-`https://raw.githubusercontent.com/EnergyCube/EpiLaptop/master/epilaptop.sh && chmod +x epilaptop.sh.sh`
+`wget https://raw.githubusercontent.com/EnergyCube/EpiLaptop/master/epilaptop.sh && chmod +x epilaptop.sh.sh`
 
 ### Step 2 (Run)
 You can run EpiLaptop with `./epilaptop.sh` if you are in the download folder or just run `epilaptop`from anywhere if you follow Step 2
