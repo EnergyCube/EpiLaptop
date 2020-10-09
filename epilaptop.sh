@@ -58,18 +58,21 @@ function menu_bg_open()
     read menu_index;
 
     if [ $menu_index == 'a' ] ; then
-        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/master/Wallpapers/epitech_blue.png"
+        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_blue.png" -P "$HOME/Pictures/EPITECH"
     elif [ $menu_index == 'b' ] ; then
-        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/master/Wallpapers/epitech_green.png"
+        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_green.png" -P "$HOME/Pictures/EPITECH"
     elif [ $menu_index == 'c' ] ; then
-        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/master/Wallpapers/epitech_yellow.png"
+        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_yellow.png" -P "$HOME/Pictures/EPITECH"
     elif [ $menu_index == 'd' ] ; then
-        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/master/Wallpapers/epitech_red.png"
+        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_red.png" -P "$HOME/Pictures/EPITECH"
     else
         menu
     fi
 
-    echo "If the download went well the image is in your image folder in the EPITECH folder, you have to right click on it to set it as wallpaper.";
+    echo "If the download went well the image is in your 'Pictures' folder in the EPITECH folder, you have to right click on it to set it as wallpaper.";
+    echo "Press any key to return to the main menu or Ctr-C to exit...";
+    read reply;
+    menu
 
 }
 
@@ -100,6 +103,22 @@ function menu_update_install()
         menu
     fi
 
+    printf "\033c";
+    print_top
+    echo "####   Fedora & Apps : Installation Complete   ####";
+    echo "###################################################";
+    echo "###################################################";
+    echo "###################################################";
+    echo "###################################################";
+    echo "###################################################";
+    echo "###################################################";
+    echo "###################################################";
+    echo "####################### /!\ #######################";
+    print_bottom
+    echo "";
+    echo "Press any key to return to the main menu or Ctr-C to exit...";
+    read reply;
+    menu
 }
 
 function menu_gnome_install()
