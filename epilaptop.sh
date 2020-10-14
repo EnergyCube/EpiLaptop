@@ -58,18 +58,29 @@ function menu_bg_open()
     read menu_index;
 
     if [ $menu_index == 'a' ] ; then
-        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_blue.png" -P "$HOME/Pictures/EPITECH"
+        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_blue.png" -O "/usr/share/backgrounds/EPITECH/epitech_blue.png"
+        chmod 666 "/usr/share/backgrounds/EPITECH/epitech_blue.png"
+        sudo -u user gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_blue.png"
     elif [ $menu_index == 'b' ] ; then
-        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_green.png" -P "$HOME/Pictures/EPITECH"
+        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_green.png" -O "/usr/share/backgrounds/EPITECH/epitech_green.png"
+        chmod 666 "/usr/share/backgrounds/EPITECH/epitech_green.png"
+        sudo -u user gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_green.png"
     elif [ $menu_index == 'c' ] ; then
-        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_yellow.png" -P "$HOME/Pictures/EPITECH"
+        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_yellow.png" -O "/usr/share/backgrounds/EPITECH/epitech_yellow.png"
+        chmod 666 "/usr/share/backgrounds/EPITECH/epitech_yellow.png"
+        sudo -u user gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_yellow.png"
     elif [ $menu_index == 'd' ] ; then
-        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_red.png" -P "$HOME/Pictures/EPITECH"
+        wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_red.png" -O "/usr/share/backgrounds/EPITECH/epitech_red.png"
+        chmod 666 "/usr/share/backgrounds/EPITECH/epitech_red.png"
+        sudo -u user gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_red.png"
     else
         menu
     fi
 
-    echo "If the download went well the image is in your 'Pictures' folder in the EPITECH folder, you have to right click on it to set it as wallpaper.";
+    printf "\033c";
+    echo "If you are using GNOME your background just change or require a reboot";
+    echo "If you are using Xfce or any other UI you need to select the background";
+    echo "manually from your Settings, the file is located in usr/share/backgrounds/EPITECH/epitech_color.png";
     echo "Press any key to return to the main menu or Ctr-C to exit...";
     read reply;
     menu
@@ -325,9 +336,57 @@ function apply_xfce()
     sudo systemctl disable lightdm.service && sudo systemctl enable gdm.service
 }
 
+function update
+{
+
+    printf "\033c";
+    echo "###################################################";
+    echo "############## INTERNET : .......... ##############";
+    echo "###################################################";
+    if ! ping -c 3 github.com >/dev/null ; then
+        printf "\033c";
+        echo "###################################################";
+        echo "############## INTERNET :    \e[0;31mFAIL\e[0m    ##############";
+        echo "###################################################";
+        echo "########   Please check your connection!   ########";
+        echo "###################################################";
+        echo "#### If you want to bypass the internet check  ####"
+        echo "###########   please use this arg -s   ############";
+        echo "###################################################";
+        echo "###################################################";
+        exit 1
+    fi
+
+    printf "\033c";
+    echo "###################################################";
+    echo -e "############## INTERNET :     \e[0;32mOK\e[0m     ##############";
+    echo "###################################################";
+    sleep 1s
+    UPDATE_FILE="$0.tmp"
+    UPDATE_BASE="https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/epilaptop.sh"
+
+    wget -nv -O "$UPDATE_FILE" "$UPDATE_BASE" >& /dev/null
+    if ! diff "$0" "$UPDATE_FILE" >& /dev/null && [ -s "$UPDATE_FILE" ]; then
+        echo "Script is not up to date, please wait..."
+        sleep 2s
+        mv "$UPDATE_FILE" "$0"
+        chmod +x "$0"
+        echo "[UPDATED] $0"
+        sleep 2s
+        "$0" -s
+        exit
+    else
+        rm "$UPDATE_FILE"
+        fi
+}
+
 if [ $EUID != 0 ]; then
     sudo "$0" "$@"
     exit $?
+fi
+
+if [ "$1" != "-s" ]; then
+	update
 fi
 
 warning
