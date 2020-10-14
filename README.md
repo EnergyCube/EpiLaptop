@@ -1,4 +1,4 @@
-#💻 EpiLaptop
+# 💻 EpiLaptop
 Edit your Fedora EPITECH System !
 
 🔨 Contributing
