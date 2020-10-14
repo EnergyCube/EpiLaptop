@@ -112,7 +112,7 @@ function menu_update_install()
 
     if [ $reply == 'y' ] ; then
         # Exclude and update Teams without GPG check due to wrong signture from EPITECH Teams
-        sudo dnf upgrade --exclude teams -y && sudo dnf upgrade teams --nogpgcheck -y
+        sudo dnf upgrade --exclude teams --skip-broken -y && sudo dnf upgrade teams --nogpgcheck -y
     else
         menu
     fi
@@ -158,7 +158,7 @@ function menu_gnome_install()
     if [ $reply == 'y' ] ; then
         # Exclude RPM of Gnome to keep EPITECH RPM
         # sudo dnf install @gnome-desktop gnome-tweak-tool --nogpgcheck
-        sudo dnf install @gnome-desktop gnome-tweak-tool --exclude rpm* -y
+        sudo dnf install @gnome-desktop gnome-tweak-tool --exclude rpm* --skip-broken -y
         apply_gnome
     else
         menu
