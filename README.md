@@ -7,12 +7,12 @@ Please open pull requests.
 
 🧾 Features
 -------
-Update Your System
-Update Teams (+Fix GPG KEY)
-Install GNOME Desktop UI
-Install Visual Studio
-Install Discord
-🔒 (Suspended) Apply {EPITECH} Desktop (4 Colors)
+Update Your System<br/>
+Update Teams (+Fix GPG KEY)<br/>
+Install GNOME Desktop UI<br/>
+Install Visual Studio<br/>
+Install Discord<br/>
+🔒 (Suspended) Apply {EPITECH} Desktop (4 Colors)<br/>
 
 🔧 Error reporting
 -------
