@@ -16,7 +16,7 @@ function menu()
     echo -e "###### \e[0;31mX. Exit\e[0m ####################################";
     print_bottom
     echo "";
-    echo -n "Select the wanted operation (1, 2, 3, x) : ";
+    echo -n "Select the wanted operation (1, 2, 3, 4, 5, x) : ";
     read menu_index;
 
     if [ $menu_index == 1 ] ; then
@@ -57,30 +57,33 @@ function menu_bg_open()
     echo -n "Select the wanted operation (a, b, c, d) : ";
     read menu_index;
 
+    mkdir -p "/usr/share/backgrounds/EPITECH/"
     if [ $menu_index == 'a' ] ; then
         wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_blue.png" -O "/usr/share/backgrounds/EPITECH/epitech_blue.png"
         chmod 666 "/usr/share/backgrounds/EPITECH/epitech_blue.png"
-        sudo -u user gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_blue.png"
+        #sudo -u username gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_blue.png"
     elif [ $menu_index == 'b' ] ; then
         wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_green.png" -O "/usr/share/backgrounds/EPITECH/epitech_green.png"
         chmod 666 "/usr/share/backgrounds/EPITECH/epitech_green.png"
-        sudo -u user gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_green.png"
+        #sudo -u username gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_green.png"
     elif [ $menu_index == 'c' ] ; then
         wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_yellow.png" -O "/usr/share/backgrounds/EPITECH/epitech_yellow.png"
         chmod 666 "/usr/share/backgrounds/EPITECH/epitech_yellow.png"
-        sudo -u user gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_yellow.png"
+        #sudo -u username gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_yellow.png"
     elif [ $menu_index == 'd' ] ; then
         wget "https://raw.githubusercontent.com/EnergyCube/EpiLaptop/main/Wallpapers/epitech_red.png" -O "/usr/share/backgrounds/EPITECH/epitech_red.png"
         chmod 666 "/usr/share/backgrounds/EPITECH/epitech_red.png"
-        sudo -u user gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_red.png"
+        #sudo -u username gsettings set org.gnome.desktop.background picture-uri "/usr/share/backgrounds/EPITECH/epitech_red.png"
     else
         menu
     fi
 
     printf "\033c";
-    echo "If you are using GNOME your background just change or require a reboot";
-    echo "If you are using Xfce or any other UI you need to select the background";
-    echo "manually from your Settings, the file is located in usr/share/backgrounds/EPITECH/epitech_color.png";
+    # echo "If you are using GNOME your background just change or require a reboot";
+    #"If you are using Xfce or any other UI ...";
+    echo "You need to select the background manually, you can found";
+    echo "it in /usr/share/backgrounds/EPITECH/epitech_color.png";
+    echo "";
     echo "Press any key to return to the main menu or Ctr-C to exit...";
     read reply;
     menu
@@ -109,7 +112,7 @@ function menu_update_install()
 
     if [ $reply == 'y' ] ; then
         # Exclude and update Teams without GPG check due to wrong signture from EPITECH Teams
-        sudo dnf upgrade --exclude teams -y && sudo dnf upgrade teams --nogpgcheck -y #| grep 'Complete!' &> /dev/null
+        sudo dnf upgrade --exclude teams -y && sudo dnf upgrade teams --nogpgcheck -y
     else
         menu
     fi
@@ -154,7 +157,7 @@ function menu_gnome_install()
 
     if [ $reply == 'y' ] ; then
         # Exclude RPM of Gnome to keep EPITECH RPM
-        #sudo dnf install @gnome-desktop gnome-tweak-tool --nogpgcheck
+        # sudo dnf install @gnome-desktop gnome-tweak-tool --nogpgcheck
         sudo dnf install @gnome-desktop gnome-tweak-tool --exclude rpm* -y
         apply_gnome
     else
@@ -181,30 +184,29 @@ function menu_gnome_install()
 
 function warning()
 {
-
     printf "\033c";
     echo "###################################################";
     echo "###################################################";
-    echo "     If you need help or just want to contact me   ";
-    echo "         you can send me a message on Teams        ";
-    echo "   or by mail at vincent.mardirossian@epitech.eu   ";
+    echo "##  If you need help or just want to contact me  ##";
+    echo "###    you can send me a message on Teams or    ###";
+    echo "##   by mail at vincent.mardirossian@epitech.eu  ##";
     echo "###################################################";
     echo "###################################################";
-    echo -e "\e[0;31mYou are solely responsible for what this script run";
-    echo -e "\e[0;31mon your machine, this script can damage your device";
-    echo -e "   \e[0;31mor system. The author of the script cannot be   ";
-    echo -e "     \e[0;31mresponsible for any damage or problems on     ";
-    echo -e "                  \e[0;31myour computer.\e[0m                   ";
+    echo -e "#######  \e[1;33mThis script is under MIT License!\e[0m  #######";
     echo "###################################################";
-    echo -e "####### \e[1;33mThis program is under MIT License !\e[0m #######";
     echo "###################################################";
+    echo "#########  More about EpiLaptop License:  #########";
+    echo "#####  https://tin.re/EpiLaptopGitHubLicense  #####";
+    echo "###################################################";
+    echo "###### Do you agree with EpiLaptop License ? ######";
     echo "###################################################";
     echo "##################  [Y. ACCEPT]  ##################";
     echo "###################  [N. DENY]  ###################";
     echo "###################################################";
+    echo "###################################################";
     echo "";
 
-    echo -n "Do you accept the limitations of liability written above (Y/y, N/n) ? : ";
+    echo -n "Do you accept the EpiLaptop License (Y/y, N/n) ? : ";
     read reply;
 
     if [ $reply == 'Y' ] || [ $reply == 'y' ] ; then
@@ -236,6 +238,7 @@ function menu_vscode_install()
     read reply;
 
     if [ $reply == 'y' ] ; then
+        # Official way to install it with cmd
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
         sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
         sudo dnf check-update
@@ -285,7 +288,7 @@ function menu_discord_install()
     read reply;
 
     if [ $reply == 'y' ] ; then
-        sudo dnf install discord
+        sudo dnf install discord -y
     else
         menu
     fi
@@ -311,9 +314,9 @@ function menu_discord_install()
 function print_top()
 {
     echo "###################################################";
-    echo -e "################  \e[1;34mEpiLaptop v0.2\e[0m  #################";
+    echo -e "################  \e[1;34mEpiLaptop v0.3\e[0m  #################";
     echo "###################################################";
-    echo -e "######## \e[1;33mEdit your Fedora EPITECH System !\e[0m ########";
+    echo -e "######## \e[1;34mEdit your Fedora EPITECH System !\e[0m ########";
     echo "###################################################";
 }
 
