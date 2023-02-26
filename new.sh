@@ -102,6 +102,7 @@ function gnome_extensions()
 
 
     sudo -u $TEKUSERNAME dconf load /org/gnome/shell/extensions/dash-to-panel/ <<END
+[/]
 animate-appicon-hover=true
 animate-appicon-hover-animation-convexity={'RIPPLE': 2.0, 'PLANK': 1.0, 'SIMPLE': 0.0}
 animate-appicon-hover-animation-duration={'SIMPLE': uint32 200, 'RIPPLE': 130, 'PLANK': 100}
